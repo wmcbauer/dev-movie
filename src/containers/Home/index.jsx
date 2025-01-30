@@ -1,0 +1,20 @@
+import api from '../../services/Api';
+import { Background } from './styles';
+
+function Home() {
+	async function getMovies() {
+		const data = await api.get('/movie/popular');
+
+		console.log(data);
+	}
+	getMovies();
+
+	return (
+		<Background img="https://image.tmdb.org/t/p/original/i3e7uwZOXks3PMvTOf4yQXbNxkI.jpg">
+			<h1>Home</h1>
+			<p>Essa é a Home</p>
+		</Background>
+	);
+}
+
+export default Home;
