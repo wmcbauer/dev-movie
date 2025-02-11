@@ -14,6 +14,7 @@ import getImages from '../../utils/getImages';
 function Home() {
 	const [movie, setMovie] = useState();
 	const [topMovies, setTopMovies] = useState();
+	const [topSeries, setTopSeries] = useState();
 
 	useEffect(() => {
 		async function getMovies() {
@@ -32,6 +33,15 @@ function Home() {
 			setTopMovies(results);
 		}
 
+		async function getTopSeries() {
+			const {
+				data: { results },
+			} = await api.get('tv/top_rated');
+
+			setTopSeries(results);
+		}
+
+		getTopSeries();
 		getTopMovies();
 		getMovies();
 	}, []);
@@ -56,6 +66,7 @@ function Home() {
 				</Background>
 			)}
 			{topMovies && <Slider info={topMovies} title={'top filmes'} />}
+			{topSeries && <Slider info={topSeries} title={'top series'} />}
 		</>
 	);
 }
